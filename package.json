@@ -1,0 +1,45 @@
+{
+  "name": "ngx-firebase-ai-logic",
+  "version": "0.1.0",
+  "description": "Angular providers for Firebase AI Logic (Gemini) with App Check — DRY bootstrap for AI-powered apps",
+  "license": "MIT",
+  "author": "Wayne Gakuo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/waynegakuo/ngx-firebase-ai-logic.git"
+  },
+  "keywords": [
+    "angular",
+    "ngx",
+    "firebase",
+    "firebase-ai-logic",
+    "gemini",
+    "app-check",
+    "generative-ai"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "FIREBASE_SETUP.md"
+  ],
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json",
+    "watch": "ng-packagr -p ng-package.json --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=18.0.0",
+    "@angular/core": ">=18.0.0",
+    "@angular/fire": ">=18.0.0",
+    "firebase": ">=12.19.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/fire": "^19.1.0",
+    "firebase": "^12.19.0",
+    "ng-packagr": "^19.2.0",
+    "typescript": "~5.7.2"
+  }
+}
