@@ -2,8 +2,6 @@
 
 Angular providers for **Firebase AI Logic** (Gemini) with **App Check** — one function to bootstrap AI-powered apps without rewiring Firebase on every project.
 
-Extracted from production patterns in [ByteWise](https://github.com/waynegakuo/bytewise).
-
 ## What it does
 
 - Single **`provideFirebaseAILogic()`** call — Firebase App, App Check, and `getAI()` in the correct order
@@ -23,6 +21,16 @@ Extracted from production patterns in [ByteWise](https://github.com/waynegakuo/b
 | `firebase` | >= 12.19.0 |
 
 `@angular/fire` is **not** required. You can still use AngularFire elsewhere in your app if you want — this library does not depend on it.
+
+## Angular compatibility
+
+| | |
+|---|---|
+| **Built & tested with** | Angular 19 |
+| **Peer dependency range** | Angular 18+ (`@angular/core`, `@angular/common`) |
+| **Angular 22+** | Expected to work — no `@angular/fire` peer conflicts. Not yet verified in CI against v22; open an issue if you hit problems on a newer major. |
+
+The library uses only stable DI and platform APIs (`InjectionToken`, `makeEnvironmentProviders`, `isPlatformBrowser`), so new Angular majors are unlikely to require changes unless those APIs change.
 
 ## Install
 
