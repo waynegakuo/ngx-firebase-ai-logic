@@ -1,5 +1,6 @@
 {
   "name": "ngx-firebase-ai-logic",
+  "private": true,
   "version": "0.1.0",
   "description": "Angular providers for Firebase AI Logic (Gemini) with App Check — DRY bootstrap for AI-powered apps",
   "license": "MIT",
@@ -18,15 +19,12 @@
     "generative-ai"
   ],
   "sideEffects": false,
-  "files": [
-    "dist",
-    "README.md",
-    "FIREBASE_SETUP.md"
-  ],
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "watch": "ng-packagr -p ng-package.json --watch",
-    "prepublishOnly": "npm run build"
+    "prepare-dist": "node scripts/prepare-dist-package.cjs",
+    "pack:lib": "npm run build && npm run prepare-dist && npm pack ./dist/ngx-firebase-ai-logic",
+    "publish:lib": "npm run build && npm run prepare-dist && npm publish ./dist/ngx-firebase-ai-logic --access public"
   },
   "peerDependencies": {
     "@angular/common": ">=18.0.0",
