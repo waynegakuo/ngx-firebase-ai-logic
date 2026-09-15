@@ -11,20 +11,23 @@ Extracted from production patterns in [ByteWise](https://github.com/waynegakuo/b
 - **SSR-safe** App Check placeholder
 - **Limited-use App Check tokens** in production (replay protection)
 - **Dev-only diagnostics** — App Check + Gemini probe (never runs in production builds)
-- Typed injection tokens: **`FIREBASE_AI`**, **`FIREBASE_APP`**
+- **No `@angular/fire` dependency** — uses the `firebase` JS SDK directly, so it works with Angular 18+ including v22+ without AngularFire peer conflicts
+- Typed injection tokens: **`FIREBASE_AI`**, **`FIREBASE_APP`**, **`FIREBASE_APP_CHECK`**
 
 ## Requirements
 
 | Package | Version |
 |---------|---------|
 | `@angular/core` | >= 18 |
-| `@angular/fire` | >= 18 |
+| `@angular/common` | >= 18 |
 | `firebase` | >= 12.19.0 |
+
+`@angular/fire` is **not** required. You can still use AngularFire elsewhere in your app if you want — this library does not depend on it.
 
 ## Install
 
 ```bash
-npm install ngx-firebase-ai-logic firebase @angular/fire
+npm install ngx-firebase-ai-logic firebase
 ```
 
 ## Quick start
@@ -109,6 +112,7 @@ provideFirebaseAILogic({
 | `provideFirebaseAILogic(config)` | Root providers for App + App Check + AI |
 | `FIREBASE_AI` | Inject Gemini client (`firebase/ai` `AI` type) |
 | `FIREBASE_APP` | Inject `FirebaseApp` |
+| `FIREBASE_APP_CHECK` | Inject `AppCheck` instance |
 | `FIREBASE_AI_LOGIC_CONFIG` | Resolved config (advanced) |
 | `FirebaseAILogicConfig` | Config interface |
 

@@ -41,7 +41,7 @@ Follow [semver](https://semver.org/): `0.1.0` → `0.1.1` (fix), `0.2.0` (featur
 Consumers install with:
 
 ```bash
-npm install ngx-firebase-ai-logic firebase @angular/fire
+npm install ngx-firebase-ai-logic firebase
 ```
 
 Push git tags (optional):

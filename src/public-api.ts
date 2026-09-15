@@ -10,5 +10,6 @@ export {
 export {
   FIREBASE_AI,
   FIREBASE_APP,
+  FIREBASE_APP_CHECK,
   FIREBASE_AI_LOGIC_CONFIG,
 } from './lib/tokens';

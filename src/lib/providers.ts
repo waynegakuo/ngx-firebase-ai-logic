@@ -1,16 +1,28 @@
-import { inject, makeEnvironmentProviders, PLATFORM_ID, type EnvironmentProviders, type Injector } from '@angular/core';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { AppCheck, provideAppCheck } from '@angular/fire/app-check';
+import {
+  makeEnvironmentProviders,
+  PLATFORM_ID,
+  type EnvironmentProviders,
+} from '@angular/core';
 import { getAI, GoogleAIBackend, type AI } from 'firebase/ai';
+import { initializeApp } from 'firebase/app';
+import type { AppCheck } from 'firebase/app-check';
 import { initializeFirebaseAppCheck } from './app-check';
 import {
   type FirebaseAILogicConfig,
   resolveFirebaseAILogicConfig,
 } from './config';
-import { FIREBASE_AI, FIREBASE_AI_LOGIC_CONFIG, FIREBASE_APP } from './tokens';
+import {
+  FIREBASE_AI,
+  FIREBASE_AI_LOGIC_CONFIG,
+  FIREBASE_APP,
+  FIREBASE_APP_CHECK,
+} from './tokens';
 
 /**
  * Registers Firebase App, App Check, and Firebase AI Logic in Angular's injector.
+ *
+ * Uses the `firebase` JS SDK directly (no `@angular/fire` dependency) so the
+ * library works with any supported Angular version without AngularFire peer conflicts.
  *
  * Call once from `appConfig.providers`. Downstream services inject
  * {@link FIREBASE_AI} to call Gemini — never call `getAI()` directly.
@@ -45,37 +57,21 @@ export function provideFirebaseAILogic(
 
   return makeEnvironmentProviders([
     { provide: FIREBASE_AI_LOGIC_CONFIG, useValue: resolved },
-    provideFirebaseApp(() => firebaseApp),
-    provideAppCheck((injector: Injector) =>
-      initializeFirebaseAppCheck(
-        firebaseApp,
-        injector.get(PLATFORM_ID),
-        resolved,
-      ),
-    ),
     { provide: FIREBASE_APP, useValue: firebaseApp },
     {
+      provide: FIREBASE_APP_CHECK,
+      useFactory: (platformId: object) =>
+        initializeFirebaseAppCheck(firebaseApp, platformId, resolved),
+      deps: [PLATFORM_ID],
+    },
+    {
       provide: FIREBASE_AI,
-      useFactory: (): AI => createFirebaseAI(firebaseApp, resolved),
-      deps: [AppCheck],
+      useFactory: (_appCheck: AppCheck): AI =>
+        getAI(firebaseApp, {
+          backend: resolved.backend ?? new GoogleAIBackend(),
+          useLimitedUseAppCheckTokens: resolved.useLimitedUseAppCheckTokens,
+        }),
+      deps: [FIREBASE_APP_CHECK],
     },
   ]);
-}
-
-/**
- * Builds the Gemini client after App Check is ready.
- *
- * @param firebaseApp - Shared Firebase app instance.
- * @param config - Resolved library configuration.
- */
-function createFirebaseAI(
-  firebaseApp: ReturnType<typeof initializeApp>,
-  config: ReturnType<typeof resolveFirebaseAILogicConfig>,
-): AI {
-  inject(AppCheck);
-
-  return getAI(firebaseApp, {
-    backend: config.backend ?? new GoogleAIBackend(),
-    useLimitedUseAppCheckTokens: config.useLimitedUseAppCheckTokens,
-  });
 }

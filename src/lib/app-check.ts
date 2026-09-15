@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import type { FirebaseApp } from '@angular/fire/app';
+import type { FirebaseApp } from 'firebase/app';
 import {
   CustomProvider,
   getToken,
