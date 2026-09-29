@@ -1,7 +1,7 @@
 {
   "name": "ngx-firebase-ai-logic",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular providers for Firebase AI Logic (Gemini) with App Check — DRY bootstrap for AI-powered apps",
   "license": "MIT",
   "author": "Wayne Gakuo",
