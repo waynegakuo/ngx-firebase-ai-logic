@@ -13,7 +13,7 @@ Companion guide: [Firebase AI Logic in Angular: Client-Side Gemini Without a Cus
 - **SSR-safe** App Check placeholder
 - **Limited-use App Check tokens** in production (replay protection)
 - **Dev-only diagnostics** — App Check + Gemini probe (never runs in production builds)
-- **No `@angular/fire` dependency** — uses the `firebase` JS SDK directly
+- Uses the `firebase` JS SDK directly
 - Typed injection tokens: **`FIREBASE_AI`**, **`FIREBASE_APP`**, **`FIREBASE_APP_CHECK`**
 
 ## Requirements
