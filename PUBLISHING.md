@@ -19,7 +19,8 @@ Inspect the tarball (`ngx-firebase-ai-logic-0.1.0.tgz`). Confirm it contains:
 - `fesm2022/ngx-firebase-ai-logic.mjs`
 - `index.d.ts`, `lib/*.d.ts`
 - `README.md`, `LICENSE`, `FIREBASE_SETUP.md`
-- `package.json` with correct `main`, `module`, `types`, `exports`
+- `schematics/collection.json` and `schematics/setup/files/**`
+- `package.json` with correct `main`, `module`, `types`, `exports`, `schematics`, `ng-add`
 
 ## Publish
 

@@ -5,7 +5,9 @@
 export { provideFirebaseAILogic } from './lib/providers';
 export {
   type FirebaseAILogicConfig,
+  type FirebaseAILogicEnvironment,
   type ResolvedFirebaseAILogicConfig,
+  firebaseAILogicFromEnvironment,
 } from './lib/config';
 export {
   FIREBASE_AI,

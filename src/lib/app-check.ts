@@ -34,7 +34,7 @@ export function enableAppCheckDebugToken(
   }
 
   (globalThis as typeof globalThis & AppCheckDebugGlobal)
-    .FIREBASE_APPCHECK_DEBUG_TOKEN = debugToken;
+    .FIREBASE_APPCHECK_DEBUG_TOKEN ??= debugToken;
 }
 
 /**

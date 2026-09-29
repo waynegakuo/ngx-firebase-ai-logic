@@ -19,6 +19,13 @@
     "generative-ai"
   ],
   "sideEffects": false,
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies",
+    "packages": [
+      "firebase@^12.19.0"
+    ]
+  },
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "watch": "ng-packagr -p ng-package.json --watch",
@@ -32,8 +39,10 @@
     "firebase": ">=12.19.0"
   },
   "devDependencies": {
+    "@angular-devkit/schematics": "^19.2.0",
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
+    "@schematics/angular": "^19.2.0",
     "firebase": "^12.19.0",
     "ng-packagr": "^19.2.0",
     "typescript": "~5.7.2"

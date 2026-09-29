@@ -1,6 +1,8 @@
 import {
+  inject,
   makeEnvironmentProviders,
   PLATFORM_ID,
+  provideAppInitializer,
   type EnvironmentProviders,
 } from '@angular/core';
 import { getAI, GoogleAIBackend, type AI } from 'firebase/ai';
@@ -73,5 +75,10 @@ export function provideFirebaseAILogic(
         }),
       deps: [FIREBASE_APP_CHECK],
     },
+    // Eager-init App Check on startup — prints the debug token in DevTools
+    // immediately so you can register it in Firebase Console before first use.
+    provideAppInitializer(() => {
+      inject(FIREBASE_APP_CHECK);
+    }),
   ]);
 }

@@ -2,6 +2,40 @@ import type { FirebaseOptions } from 'firebase/app';
 import type { Backend } from 'firebase/ai';
 
 /**
+ * Shape your Angular `environment.ts` can implement.
+ *
+ * Matches the `AppEnvironment` interface from the
+ * [Firebase AI Logic in Angular](https://dev.to/gde/firebase-ai-logic-in-angular-client-side-gemini-without-a-custom-backend-54eh)
+ * guide so production and development files share one type.
+ */
+export interface FirebaseAILogicEnvironment {
+  production: boolean;
+  firebaseConfig: FirebaseOptions;
+  recaptchaEnterpriseSiteKey: string;
+  /** Dev/CI only — set in `environment.development.ts`, omit in `environment.ts`. */
+  appCheckDebugToken?: boolean | string;
+}
+
+/**
+ * Maps a typed Angular environment object to {@link FirebaseAILogicConfig}.
+ *
+ * @example
+ * ```typescript
+ * provideFirebaseAILogic(firebaseAILogicFromEnvironment(environment))
+ * ```
+ */
+export function firebaseAILogicFromEnvironment(
+  environment: FirebaseAILogicEnvironment,
+): FirebaseAILogicConfig {
+  return {
+    firebaseConfig: environment.firebaseConfig,
+    recaptchaEnterpriseSiteKey: environment.recaptchaEnterpriseSiteKey,
+    production: environment.production,
+    appCheckDebugToken: environment.appCheckDebugToken,
+  };
+}
+
+/**
  * Configuration passed to {@link provideFirebaseAILogic}.
  *
  * Keeps Firebase credentials and App Check options in one object so apps do
