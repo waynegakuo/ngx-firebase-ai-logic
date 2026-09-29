@@ -1,0 +1,15 @@
+import { inject, Injectable } from '@angular/core';
+import { getGenerativeModel } from 'firebase/ai';
+import { FIREBASE_AI } from 'ngx-firebase-ai-logic';
+
+@Injectable({ providedIn: 'root' })
+export class AiService {
+  private readonly ai = inject(FIREBASE_AI);
+
+  /** Replace the model ID if you prefer a different Gemini model. */
+  async ask(prompt: string): Promise<string> {
+    const model = getGenerativeModel(this.ai, { model: '<%= model %>' });
+    const result = await model.generateContent(prompt);
+    return result.response.text();
+  }
+}

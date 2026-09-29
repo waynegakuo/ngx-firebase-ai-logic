@@ -1,0 +1,9 @@
+import { firebaseConfig, recaptchaEnterpriseSiteKey } from './firebase.config';
+import type { AppEnvironment } from './environment.model';
+
+export const environment: AppEnvironment = {
+  production: false,
+  firebaseConfig,
+  recaptchaEnterpriseSiteKey,
+  appCheckDebugToken: true,
+};

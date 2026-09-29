@@ -1,0 +1,15 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "factory": "./ng-add/index.js",
+      "schema": "./ng-add/schema.json",
+      "description": "Install ngx-firebase-ai-logic and scaffold Firebase AI Logic files"
+    },
+    "setup": {
+      "factory": "./setup/index.js",
+      "schema": "./setup/schema.json",
+      "description": "Scaffold Firebase AI Logic environment, service, and app wiring"
+    }
+  }
+}

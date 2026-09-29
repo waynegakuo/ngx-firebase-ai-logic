@@ -1,0 +1,3 @@
+import type { FirebaseAILogicEnvironment } from 'ngx-firebase-ai-logic';
+
+export type AppEnvironment = FirebaseAILogicEnvironment;

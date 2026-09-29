@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "NgxFirebaseAILogicNgAdd",
+  "title": "ngx-firebase-ai-logic ng-add",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "Angular project name",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "demo": {
+      "type": "boolean",
+      "description": "Create an AiDemo component you can drop into your root template",
+      "default": true
+    },
+    "model": {
+      "type": "string",
+      "description": "Default Gemini model ID for the scaffolded AiService",
+      "default": "gemini-3.5-flash"
+    },
+    "skipEnvironments": {
+      "type": "boolean",
+      "description": "Skip generating environment files (if you already manage them)",
+      "default": false
+    }
+  }
+}
